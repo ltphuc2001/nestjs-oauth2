@@ -10,31 +10,6 @@
     url      = env("DATABASE_URL")
   }
 
-
-  //Model Article
-  model Article {
-    id          Int      @id @default(autoincrement())
-    title       String   @unique
-    description String?
-    body        String
-    published   Boolean  @default(false)
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
-    author      UserArticles?    @relation(fields: [authorId], references: [id])
-    authorId    Int?
-  }
-
-  //Model UserArticles
-  model UserArticles {
-    id        Int       @id @default(autoincrement())
-    name      String?
-    email     String    @unique
-    password  String
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
-    articles  Article[]
-  }
-
   //Model UserTest
   model UserTest {
     id        Int       @id @unique @default(autoincrement())

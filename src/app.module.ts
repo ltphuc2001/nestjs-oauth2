@@ -9,9 +9,12 @@ import { UserTestModule } from './user-test/user-test.module';
 import { UserRoleModule } from './user-role/user-role.module';
 import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
+import { PassportModule } from '@nestjs/passport';
+import { OAuth2Module } from './oauth2/oauth2.module';
 
 @Module({
   imports: [
+    PassportModule.register({ defaultStrategy: 'oauth2', session: false }),
     PrismaModule,
     JwtModule,
     AuthModule,
@@ -20,6 +23,7 @@ import { PermissionModule } from './permission/permission.module';
     PermissionModule,
     UserRoleModule,
     PermissionModule,
+    OAuth2Module,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

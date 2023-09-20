@@ -10,6 +10,7 @@ import { AuthRepository } from './auth.repository';
 import { UserTestModule } from 'src/user-test/user-test.module';
 import { UserTestService } from 'src/user-test/user-test.service';
 import { UserTestRepository } from 'src/user-test/user-test.repository';
+import { OAuth2Strategy } from 'src/oauth2/oauth2.strategy';
 
 export const jwtSecret = 'zjP9h6ZI5LoSKCRj';
 
@@ -30,6 +31,7 @@ export const jwtSecret = 'zjP9h6ZI5LoSKCRj';
     AuthRepository,
     UserTestService,
     UserTestRepository,
+    OAuth2Strategy,
   ],
 })
 export class AuthModule {}
