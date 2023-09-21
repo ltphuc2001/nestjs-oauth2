@@ -35,15 +35,15 @@ export class AuthGuards implements CanActivate {
           return user.user_role.some((userRole) => {
             console.log(userRole.role.role_permission);
 
-            return userRole.role.role_permission.some((rolePermission) => {
-              const titles = rolePermission.permission;
-              console.log(titles.title);
-              console.log(requiredPermission);
-              if (titles.title == requiredPermission) {
-                return true;
-              }
-              return false;
-            });
+              // return userRole.role.role_permission.some((rolePermission) => {
+              //   const titles = rolePermission.permission;
+              //   console.log(titles.title);
+              //   console.log(requiredPermission);
+              //   if (titles.title == requiredPermission) {
+              //     return true;
+              //   }
+              //   return false;
+              });
           });
         },
       );

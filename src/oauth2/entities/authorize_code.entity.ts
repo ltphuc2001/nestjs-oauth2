@@ -1,8 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AuthorizationCodeDto {
-  @ApiProperty()
-  email: string;
+export class AuthorizationCodeEntity {
   @ApiProperty()
   AuthorizationCode: string;
+
 }

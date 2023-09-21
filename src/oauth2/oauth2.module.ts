@@ -3,18 +3,31 @@
 import { Module } from '@nestjs/common';
 import { OAuth2Service } from './oauth2.service';
 import { OAuth2Controller } from './oauth2.controller';
-import { PassportModule } from '@nestjs/passport';
-import { OAuth2Strategy } from './oauth2.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { OAuth2Repository } from './oauth2.repository';
 import { PrismaModule } from 'src/prisma/prisma.module';
+import { UserTestRepository } from 'src/user-test/user-test.repository';
+import { UserTestService } from 'src/user-test/user-test.service';
+import { JwtStrategy } from 'src/auth/jwt.strategy';
+import { UserTestModule } from 'src/user-test/user-test.module';
+
+export const jwtSecret = 'zjP9h6ZI5LoSKCRj';
 @Module({
   imports: [
     PrismaModule,
-    PassportModule.register({ defaultStrategy: 'oauth2' }),
-    JwtModule.register({ secret: 'your-secret-key' }), // Thay thế bằng khóa bí mật thực tế
+    JwtModule.register({
+      secret: jwtSecret,
+      signOptions: { expiresIn: '5m' },
+    }), // Chỉnh sửa theo nhu cầu của bạn
+    UserTestModule,
   ],
   controllers: [OAuth2Controller],
-  providers: [OAuth2Service, OAuth2Strategy, OAuth2Repository],
+  providers: [
+    OAuth2Service,
+    OAuth2Repository,
+    JwtStrategy,
+    UserTestService,
+    UserTestRepository,
+  ],
 })
 export class OAuth2Module {}

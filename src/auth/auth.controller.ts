@@ -5,16 +5,11 @@ import { AuthService } from './auth.service';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthEntity } from './entities/auth.entity';
 import { LoginDto } from './dto/login.dto';
-import { OAuth2Strategy } from '../oauth2/oauth2.strategy';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly oauth2Strategy: OAuth2Strategy,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('login')
   @ApiOkResponse({ type: AuthEntity })
